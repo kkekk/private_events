@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      create_host
+      @event.create_attending!(user_id: current_user_id, role: 'host')
       redirect_to @event, notice: 'Event was successfully created.'
     else
       render :new
@@ -50,9 +50,5 @@ class EventsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def event_params
     params.require(:event).permit(:name, :description, :starts_at, :ends_at)
-  end
-
-  def create_host
-    Attending.create!(event_id: @event.id, user_id: current_user.id, role: 'host')
   end
 end
