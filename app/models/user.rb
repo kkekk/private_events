@@ -4,4 +4,8 @@ class User < ApplicationRecord
 
   has_many :attendings, dependent: :destroy
   has_many :events, through: :attendings
+
+  def hostings
+    attendings.where(role: 'host')
+  end
 end
