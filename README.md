@@ -1,24 +1,8 @@
-# README
+# private events
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Based on https://www.theodinproject.com/courses/ruby-on-rails/lessons/associations
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## TODO
+- [ ] Modify your User’s Show page to list all the events a user has created.
+- [ ] Create an attend button on event#show :
+    - [ ] Host views **you are hosting this event!**
