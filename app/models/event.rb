@@ -9,4 +9,8 @@ class Event < ApplicationRecord
   def hosts
     attendings.where(role: 'host')
   end
+
+  def attendees
+    attendings.where(role: 'attendee')
+  end
 end

@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   def show
     @hosts = @event.hosts
+    @attendees = @event.attendees
   end
 
   def new

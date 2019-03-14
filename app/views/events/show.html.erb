@@ -21,7 +21,26 @@
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
 
-<h2>Host</h2>
-<% @hosts.each do |host| %>
-    <strong><%= link_to host.user.email, user_path(host) %></strong>
-<% end %>
+<hr>
+<div class="card-deck">
+    <div class="card bg-light">
+        <div class="card-title">Host</div>
+        <div class="card-body">
+            <div class="list-group">
+                <% @hosts.each do |host| %>
+                    <%= link_to host.user.email, user_path(host.user), class: 'list-group-item list-group-item-action'%>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="card bg-light">
+        <div class ="card-title">Who's Going?</div>
+        <div class="card-body">
+            <div class="card-text list-group">
+                <% @attendees.each do |attendee| %>
+                    <%= link_to attendee.user.email, user_path(attendee.user), class: 'list-group-item list-group-item-action'%>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
