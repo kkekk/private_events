@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create(
+  email: 'host@example.com',
+  password: 'password'
+           )
+
+babby = User.first.events.new(name: "Babby's first event", description: 'My first event!', starts_at: 1.day.from_now )
+babby.save!
+babby.attendings.create!(user: User.first, role: 'host')
+
+(1..3).each do |x|
+  u = User.create(
+    email: "user#{x}@example.com",
+    password: 'password'
+  )
+  babby.attendings.create!(user: u, role: 'attendee')
+end
