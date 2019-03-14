@@ -8,4 +8,8 @@ class User < ApplicationRecord
   def hostings
     attendings.where(role: 'host')
   end
+
+  def attendees
+    attendings.where(role: 'attendee')
+  end
 end

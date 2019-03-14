@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @attendings = @user.hostings
+    @hostings = @user.hostings
+    @attendings = @user.attendees
   end
 end

@@ -1,9 +1,25 @@
 <h3>Hello, <%= @user.email %></h3>
 <%= link_to "Manage Profile", edit_user_registration_path %>
-<h4>Events you are hosting</h4>
 <hr>
-<div class="list-group">
-    <% @attendings.each do |hosting| %>
-        <%= link_to hosting.event.name, event_path(hosting.event), class: 'list-group-item list-group-item-action'%>
-    <% end %>
+<div class="card-deck">
+        <div class="card bg-light">
+            <div class="card-title">Events you are hosting</div>
+            <div class="card-body">
+                <div class="list-group">
+                    <% @hostings.each do |hosting| %>
+                        <%= link_to hosting.event.name, event_path(hosting.event), class: 'list-group-item list-group-item-action'%>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="card bg-light">
+            <div class ="card-title">Events you are attending</div>
+            <div class="card-body">
+                <div class="card-text list-group">
+                    <% @attendings.each do |attendee| %>
+                        <%= link_to attendee.event.name, event_path(attendee.event), class: 'list-group-item list-group-item-action'%>
+                    <% end %>
+                </div>
+            </div>
+        </div>
 </div>
