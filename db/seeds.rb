@@ -11,7 +11,10 @@ User.create(
   password: 'password'
            )
 
-babby = User.first.events.new(name: "Babby's first event", description: 'My first event!', starts_at: 1.day.from_now )
+babby = User.first.events.new(name: "Babby's first event",
+                              description: 'My first event!',
+                              starts_at: 1.day.from_now,
+                              ends_at: 26.hours.from_now)
 babby.save!
 babby.attendings.create!(user: User.first, role: 'host')
 
@@ -22,3 +25,11 @@ babby.attendings.create!(user: User.first, role: 'host')
   )
   babby.attendings.create!(user: u, role: 'attendee')
 end
+
+bruh = User.second.events.new(name: "USER 1 event!!",
+                              description: 'Event for others',
+                              starts_at: 1.day.ago, ends_at: 22.hours.ago)
+
+bruh.save!
+bruh.attendings.create!(user: User.second, role: 'host')
+bruh.attendings.create!(user: User.first, role: 'attendee')
