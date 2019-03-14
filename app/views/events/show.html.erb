@@ -21,6 +21,14 @@
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
 
+<% if @event.users.include? current_user %>
+    <!-- #TODO -->
+    <!-- YOU ARE ALREADY ATTENDING THIS EVENT! -->
+<% else %>
+    <!-- #TODO -->
+    <!-- LINK TO CONTROLLER ACTION, create attending -->
+<% end %>
+
 <hr>
 <div class="card-deck">
     <div class="card bg-light">
