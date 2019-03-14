@@ -23,5 +23,5 @@
 
 <h2>Host</h2>
 <% @hosts.each do |host| %>
-    <strong><%= host.user.email %></strong>
+    <strong><%= link_to host.user.email, user_path(host) %></strong>
 <% end %>

@@ -4,6 +4,6 @@
 <hr>
 <div class="list-group">
     <% @attendings.each do |hosting| %>
-        <li><%= link_to hosting.event.name, event_path(hosting.event), class: 'list-group-item list-group-item-action'%></li>
+        <%= link_to hosting.event.name, event_path(hosting.event), class: 'list-group-item list-group-item-action'%>
     <% end %>
 </div>
