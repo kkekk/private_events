@@ -10,16 +10,19 @@
 
 <p>
   <strong>Starts at:</strong>
-  <%= @event.starts_at %>
+  <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %>
 </p>
 
 <p>
   <strong>Ends at:</strong>
-  <%= @event.ends_at %>
+  <%= @event.ends_at.strftime('%A, %d %b %Y %l:%M %p') %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<h4>
+    <% if user_is_host %>
+        <%= link_to 'Manage Event', edit_event_path(@event) %>
+    <% end %>
+</h4>
 
 <% if @event.users.include? current_user %>
     <div class="container">You are already attending!</div>
@@ -33,7 +36,7 @@
         <div class="card-body">
             <div class="list-group">
                 <% @hosts.each do |host| %>
-                    <%= link_to host.user.email, user_path(host.user), class: 'list-group-item list-group-item-action'%>
+                    <%= link_to host.email, user_path(host), class: 'list-group-item list-group-item-action'%>
                 <% end %>
             </div>
         </div>
@@ -43,7 +46,7 @@
         <div class="card-body">
             <div class="card-text list-group">
                 <% @attendees.each do |attendee| %>
-                    <%= link_to attendee.user.email, user_path(attendee.user), class: 'list-group-item list-group-item-action'%>
+                    <%= link_to attendee.email, user_path(attendee), class: 'list-group-item list-group-item-action'%>
                 <% end %>
             </div>
         </div>

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
+  before_action :restricted_access, only: [:edit, :update, :destroy], unless: proc {user_is_host}
 
   def index
     @events = Event.all
@@ -42,6 +43,10 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
+  def user_is_host
+    @event.hosts.include? current_user
+  end
+
   private
 
   def set_event
@@ -52,4 +57,10 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :description, :starts_at, :ends_at)
   end
+
+  def restricted_access
+    redirect_back fallback_location: event_url, notice: "That ain't your event!"
+  end
+
+  helper_method :user_is_host
 end

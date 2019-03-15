@@ -7,10 +7,10 @@ class Event < ApplicationRecord
   validates :starts_at, presence: true
 
   def hosts
-    attendings.where(role: 'host')
+    attendings.where(role: 'host').map(&:user)
   end
 
   def attendees
-    attendings.where(role: 'attendee')
+    attendings.where(role: 'attendee').map(&:user)
   end
 end
