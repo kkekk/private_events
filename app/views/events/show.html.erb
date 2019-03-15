@@ -22,11 +22,8 @@
 <%= link_to 'Back', events_path %>
 
 <% if @event.users.include? current_user %>
-    <!-- #TODO -->
-    <!-- YOU ARE ALREADY ATTENDING THIS EVENT! -->
+    <div class="container">You are already attending!</div>
 <% else %>
-    <!-- #TODO -->
-    <!-- LINK TO CONTROLLER ACTION, create attending -->
 <% end %>
 
 <hr>
