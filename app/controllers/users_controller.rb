@@ -7,11 +7,8 @@ class UsersController < ApplicationController
     @attendings = @user.attendees
   end
 
-  private
-
-  def user_authorization
-    unless current_user && current_user.id.to_s == params[:id]
-      redirect_back fallback_location: root_url, notice: "that ain't your account"
-    end
+  def attend_event
+    current_user.attendings.create!(event_id: params[:event_id], role: 'attendee')
+    redirect_to event_url, notice: "Event attended successfully!"
   end
 end

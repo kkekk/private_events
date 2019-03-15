@@ -27,6 +27,7 @@
 <% if @event.users.include? current_user %>
     <div class="container">You are already attending!</div>
 <% else %>
+    <%= button_to 'Attend Event!', attend_event_user_path(event_id: @event.id)%>
 <% end %>
 
 <hr>

@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
   resources :events
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    member do
+      post :attend_event
+    end
+  end
 end
