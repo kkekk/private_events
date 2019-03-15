@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :user_authorization, only: [:show]
+  before_action :user_authorization, only: [:show, :attend_event]
 
   def show
     @user = User.find(params[:id])

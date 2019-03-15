@@ -23,7 +23,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      @event.create_attending!(user_id: current_user_id, role: 'host')
+      @event.attendings.create!(user_id: current_user.id, role: 'host')
       redirect_to @event, notice: 'Event was successfully created.'
     else
       render :new

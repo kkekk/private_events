@@ -2,5 +2,6 @@
 
 <%= render 'form', event: @event %>
 
+<%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Show', @event %> |
 <%= link_to 'Back', events_path %>
