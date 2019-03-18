@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     member do
       post :attend_event
+      post :unattend_event
     end
   end
 end

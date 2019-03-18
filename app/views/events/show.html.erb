@@ -24,8 +24,10 @@
     <% end %>
 </h4>
 
-<% if @event.users.include? current_user %>
+<% if !user_is_host && @attendees.include?(current_user) %>
+    <!-- TODO Replace with button to unattend -->
     <div class="container">You are already attending!</div>
+    <%= button_to 'Unattend Event!', unattend_event_user_path(event_id: @event.id)%>
 <% else %>
     <%= button_to 'Attend Event!', attend_event_user_path(event_id: @event.id)%>
 <% end %>
