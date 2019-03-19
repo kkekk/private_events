@@ -13,4 +13,12 @@ class Event < ApplicationRecord
   def attendees
     attendings.where(role: 'attendee').map(&:user)
   end
+
+  def self.past_events
+    where('ends_at < ?', Time.now)
+  end
+
+  def self.future_events
+    where('ends_at > ?', Time.now)
+  end
 end
