@@ -6,11 +6,11 @@ Rails.application.routes.draw do
     post 'signin', to: 'devise/sessions#create', as: :user_session
     delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
-  resources :events
-  resources :users, only: [:show] do
+  resources :events do
     member do
-      post :attend_event
-      post :unattend_event
+      post :attend
+      post :unattend
     end
   end
+  resources :users, only: [:show]
 end

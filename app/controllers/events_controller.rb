@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create, :attend]
   before_action :restricted_access, only: [:edit, :update, :destroy], unless: proc {user_is_host}
 
   def index
@@ -43,8 +43,14 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
-  def user_is_host
-    @event.hosts.include? current_user
+  def attend
+    current_user.attendings.create!(event_id: params[:id], role: 'attendee')
+    redirect_to event_url, notice: "Event attended successfully!"
+  end
+
+  def unattend
+    current_user.attendings.find_by(event_id: params[:id]).destroy
+    redirect_to event_url, notice: "You are no longer attending event"
   end
 
   private
@@ -60,6 +66,14 @@ class EventsController < ApplicationController
 
   def restricted_access
     redirect_back fallback_location: event_url, notice: "That ain't your event!"
+  end
+
+  def user_is_host
+    @event.hosts.include? current_user
+  end
+
+  def user_is_attendee
+    @event.attendees.include? current_user
   end
 
   helper_method :user_is_host
